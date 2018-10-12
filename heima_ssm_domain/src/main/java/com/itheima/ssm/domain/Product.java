@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
- * 产品信息
+ * 产品信息bean
  */
 public class Product {
     private String id; // 主键
