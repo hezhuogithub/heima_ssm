@@ -3,7 +3,7 @@ package com.itheima.ssm.dao;
 import java.io.File;
 
 /**
- * 清理maven仓库
+ * 清理maven仓库文件
  * @author xuzhao
  *
  */
