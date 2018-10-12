@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f0d29f0-2dd9-45b2-b76f-bed7e71dd476" name="Default" comment="v2.0">
+    <list default="true" id="5f0d29f0-2dd9-45b2-b76f-bed7e71dd476" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/heima_ssm_dao/src/test/java/com/itheima/ssm/dao/MavenClean.java" afterPath="$PROJECT_DIR$/heima_ssm_dao/src/test/java/com/itheima/ssm/dao/MavenClean.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/heima_ssm_service/target/" />
@@ -367,7 +366,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539314934204</updated>
-      <workItem from="1539314944940" duration="5759000" />
+      <workItem from="1539314944940" duration="5782000" />
     </task>
     <task id="LOCAL-00001" summary="First提交到远程仓库">
       <created>1539316700138</created>
@@ -383,11 +382,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539318091781</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="v2.0">
+      <created>1539327185538</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1539327185538</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5759000" />
+    <option name="totallyTimeSpent" value="5782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
