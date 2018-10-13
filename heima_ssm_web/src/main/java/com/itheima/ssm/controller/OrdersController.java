@@ -32,6 +32,12 @@ public class OrdersController {
         return mv;
     }*/
 
+    /**
+     * 查询全部订单---分页
+     * @param page
+     * @param size
+     * @return
+     */
     @RequestMapping("/findAll.do")
     public ModelAndView findAll(@RequestParam(name = "page",required = true,defaultValue = "1") int page,@RequestParam(name = "size",required = true,defaultValue = "4") int size){
         ModelAndView mv = new ModelAndView ();
@@ -40,6 +46,16 @@ public class OrdersController {
         PageInfo pageInfo = new PageInfo (ordersList);
         mv.addObject ("pageInfo",pageInfo);
         mv.setViewName ("orders-page-list");
+        return mv;
+    }
+
+
+    @RequestMapping("/findById.do")
+    public ModelAndView findById(@RequestParam(name = "id",required = true) String ordersId){
+        ModelAndView mv = new ModelAndView ();
+        Orders orders = ordersService.findById(ordersId);
+        mv.addObject ("orders",orders);
+        mv.setViewName ("orders-show");
         return mv;
 
     }

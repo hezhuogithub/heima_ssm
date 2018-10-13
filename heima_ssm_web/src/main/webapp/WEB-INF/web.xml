@@ -25,15 +25,26 @@
         <filter-name>encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--配置springSecurity-->
+    <filter>
+        <!-- filter-name的名称是不能改动，只能为下面的值 -->
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <!-- 指定权限框架所管理的URL的后缀 /* : 所有URL都被管理（包含你要访问.jsp,.html,.js,... -->
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!--监听器-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!--重新指定spring配置文件的路径-->
+    <!--配置加载类路径的配置文件-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/applicationContext.xml</param-value>
+        <param-value>classpath:spring/applicationContext.xml,classpath:spring-security.xml</param-value>
     </context-param>
 
     <!--配置前端控制器-->
