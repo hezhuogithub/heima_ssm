@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="ITHEIMA">
       <ObjectId>61</ObjectId>
-      <IntrospectionTimestamp>2018-10-10.03:13:34</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-10-14.05:14:16</IntrospectionTimestamp>
       <CreatedTimestamp>2018-09-29.03:37:57</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-10.03:12:58</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-10-14.05:14:16</ModifiedTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -145,13 +145,13 @@
     <table id="39" parent="2" name="USERS">
       <ObjectId>52711</ObjectId>
       <CreatedTimestamp>2018-10-10.03:12:55</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-10.03:12:58</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-10-14.02:53:29</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="40" parent="2" name="USERS_ROLE">
       <ObjectId>52714</ObjectId>
       <CreatedTimestamp>2018-10-10.03:12:55</CreatedTimestamp>
-      <ModifiedTimestamp>2018-10-10.03:12:58</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-10-14.05:14:16</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <column id="41" parent="31" name="ID">
@@ -558,7 +558,7 @@ ROLEID</ColNames>
       <Position>1</Position>
       <DataType>VARCHAR2(32)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>SYS_GUID()</DefaultExpression>
+      <DefaultExpression>SYS_GUID() </DefaultExpression>
     </column>
     <column id="107" parent="39" name="EMAIL">
       <Position>2</Position>
@@ -571,7 +571,8 @@ ROLEID</ColNames>
     </column>
     <column id="109" parent="39" name="PASSWORD">
       <Position>4</Position>
-      <DataType>VARCHAR2(50)|0</DataType>
+      <DataType>VARCHAR2(100)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
     </column>
     <column id="110" parent="39" name="PHONENUM">
       <Position>5</Position>
@@ -644,8 +645,7 @@ ROLEID</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="120" parent="40" name="SYS_C005512">
-      <NameSurrogate>1</NameSurrogate>
-      <ModifiedTimestamp>2018-10-10.03:12:55</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-10-14.05:14:16</ModifiedTimestamp>
       <ColNames>USERID</ColNames>
       <RefSchemaName>ITHEIMA</RefSchemaName>
       <RefTableName>USERS</RefTableName>
@@ -653,8 +653,7 @@ ROLEID</ColNames>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
     <foreign-key id="121" parent="40" name="SYS_C005513">
-      <NameSurrogate>1</NameSurrogate>
-      <ModifiedTimestamp>2018-10-10.03:12:55</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-10-14.05:14:16</ModifiedTimestamp>
       <ColNames>ROLEID</ColNames>
       <RefSchemaName>ITHEIMA</RefSchemaName>
       <RefTableName>ROLE</RefTableName>
