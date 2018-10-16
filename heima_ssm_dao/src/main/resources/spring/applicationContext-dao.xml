@@ -17,6 +17,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--dao层配置文件开始-->
+    <!--加载配置文件-->
     <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
     <!--配置数据库环境-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -43,7 +44,9 @@
                 <bean class="com.github.pagehelper.PageInterceptor">
                     <property name="properties">
                         <props>
+                            <!--分页插件会自动检测当前的数据库链接属性oracle, mysql等等-->
                             <prop key="helperDialect">oracle</prop>
+                            <!--分页合理化参数当pageNum<=0时,会查询第一页,当pageNum>=pages,会查询最后一页-->
                             <prop key="reasonable">true</prop>
                         </props>
                     </property>
@@ -51,6 +54,7 @@
             </array>
         </property>
     </bean>
+
 
     <!--配置myabtis扫描-映射文件-->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

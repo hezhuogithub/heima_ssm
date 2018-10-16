@@ -1,5 +1,6 @@
 package com.itheima.ssm.dao;
 
+import com.itheima.ssm.domain.Role;
 import com.itheima.ssm.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -19,14 +20,12 @@ public interface UserDao {
     })
     public UserInfo findByUsername(String username);
 
+    @Insert ("insert into users(username,email,password,phoneNum,status) values(#{username},#{email},#{password},#{phoneNum},#{status})")
+    void save(UserInfo userInfo);
 
 
     @Select ("select * from users")
     List<UserInfo> findAll();
-
-    @Insert ("insert into users(username,email,password,phoneNum,status) values(#{username},#{email},#{password},#{phoneNum},#{status})")
-    void save(UserInfo userInfo);
-
 
     @Select ("select * from users where id=#{id}")
     @Results({
@@ -39,4 +38,16 @@ public interface UserDao {
             @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "com.itheima.ssm.dao.RoleDao.findRoleByUserId"))
     })
     UserInfo findById(String id);
+
+    @Delete ("delete from Users_Role where userId=#{id}")
+    void deleteFromUsers_Role(String id);
+
+    @Delete ("delete from users where id=#{id}")
+    void deleteById(String id);
+
+    @Select ("select * from role where id not in(select roleId from users_role where userId=#{userId})")
+    List<Role> findOtherRoles(String userId);
+
+    @Insert ("insert into users_role(userId,roleId) values(#{userId},#{roleId})")
+    void addRoleToUser(@Param ("userId") String userId,@Param ("roleId") String roleId);
 }

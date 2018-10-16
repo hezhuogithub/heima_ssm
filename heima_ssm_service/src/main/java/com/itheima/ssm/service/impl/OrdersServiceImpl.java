@@ -20,7 +20,6 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public List<Orders> findAll(int page,int size) {
-
         //参数pageNum 是页码值  参数pageSize  代表是每页显示条数
         PageHelper.startPage (page,size);
         return ordersDao.findAll ();
@@ -28,7 +27,6 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Orders findById(String ordersId) {
-
         return ordersDao.findById(ordersId);
     }
 }

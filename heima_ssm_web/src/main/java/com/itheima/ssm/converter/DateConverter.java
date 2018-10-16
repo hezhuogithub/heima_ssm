@@ -9,8 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateConverter implements Converter<String,Date> {
-
-
     @Override
     public Date convert(String source) {
         if (source!=null){
@@ -24,7 +22,6 @@ public class DateConverter implements Converter<String,Date> {
         }else{
             System.out.println ("请传入数据!");
         }
-
         return null;
     }
 }

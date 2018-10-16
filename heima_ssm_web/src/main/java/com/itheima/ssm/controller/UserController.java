@@ -1,11 +1,15 @@
 package com.itheima.ssm.controller;
 
 
+import com.itheima.ssm.domain.Role;
 import com.itheima.ssm.domain.UserInfo;
 import com.itheima.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -17,7 +21,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    /**
+     * 查询所有用户
+     * @return
+     */
     @RequestMapping("/findAll.do")
+    @PreAuthorize ("hasRole('ROLE_ADMIN')")
     public ModelAndView findAll(){
         ModelAndView mv = new ModelAndView ();
         List<UserInfo> userList = userService.findAll();
@@ -26,29 +36,72 @@ public class UserController {
         return mv;
     }
 
+
     /**
      * 用户添加
      * @param userInfo
      * @return
      */
     @RequestMapping("/save.do")
+    @PreAuthorize ("authentication.principal.username=='admin'")
     public String save(UserInfo userInfo){
-
         userService.save(userInfo);
-
         return "redirect:findAll.do";
-
     }
 
-
+    /**
+     * 用户详情
+     * @param id
+     * @return
+     */
     @RequestMapping("/findById.do")
     public ModelAndView findById(String id){
         ModelAndView mv = new ModelAndView ();
         UserInfo userInfo = userService.findById(id);
         mv.addObject ("user",userInfo);
-        System.out.println (userInfo);
         mv.setViewName ("user-show");
         return mv;
-
     }
+
+    /**
+     * 根据id删除用户包含中间表中userId和users表中Id
+     * @param id
+     * @return
+     */
+   @RequestMapping("/deleteUser.do")
+    public String deleteUser(String id){
+        userService.deleteById(id);
+        return "redirect:findAll.do";
+
+   }
+
+    /**
+     * 查询用户以及用户可以添加的角色
+     * 就是查询未被添加的所有角色信息
+     * @return
+     */
+   @RequestMapping("/findUserByIdAndAllRole.do")
+   public String findUserByIdAndAllRole(@RequestParam(name = "id",required = true) String userId, Model model){
+       //1.根据用户id查询用户
+       UserInfo userInfo = userService.findById (userId);
+       //2.根据用户id查询可以添加的角色
+       List<Role> otherRoles = userService.findOtherRoles(userId);
+       model.addAttribute ("user",userInfo);
+       model.addAttribute ("roleList",otherRoles);
+       return "user-role-add";
+   }
+
+    /**
+     * 给用户添加角色
+     * @param userId
+     * @param roleIds
+     * @return
+     */
+   @RequestMapping("/addRoleToUser.do")
+   public String addRoleToUser(@RequestParam(name = "userId",required = true) String userId,@RequestParam(name = "ids",required = true) String[] roleIds){
+        userService.addRoleToUser(userId,roleIds);
+        return "redirect:findAll.do";
+   }
+
+
 }

@@ -7,6 +7,8 @@
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security.xsd">
 
+
+
     <!-- 配置不拦截的资源 -->
     <security:http pattern="/login.jsp" security="none"/>
     <security:http pattern="/failer.jsp" security="none"/>
@@ -18,6 +20,8 @@
     	配置具体的规则
     	auto-config="true"	不用自己编写登录的页面，框架提供默认登录页面
     	use-expressions="false"	是否使用SPEL表达式（没学习过）
+    	当为false时候,access="ROLE_USER,ROLE_ADMIN"
+    	当为true时,access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"
     -->
     <security:http auto-config="true" use-expressions="false">
         <!-- 配置具体的拦截的规则 pattern="请求路径的规则" access="访问系统的人，必须有ROLE_USER的角色或者ROLE_ADMIN的角色" -->
@@ -50,6 +54,8 @@
 
     <!-- 配置加密类 -->
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <!--配置web端就是页面端使用权限控制-->
+    <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 
     <!-- 提供了入门的方式，在内存中存入用户名和密码
     <security:authentication-manager>

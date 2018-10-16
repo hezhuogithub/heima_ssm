@@ -42,7 +42,6 @@ public class UserServiceImpl implements UserService {
         User user = new User (userInfo.getUsername (),userInfo.getPassword (),userInfo.getStatus ()==0?false:true,true,true,true,getAuthority (userInfo.getRoles ()));
         return user;
     }
-
     /**
      * 作用就是返回一个List集合，集合中装入的是角色描述
      * @return
@@ -55,12 +54,6 @@ public class UserServiceImpl implements UserService {
             list.add (new SimpleGrantedAuthority ("ROLE_"+role.getRoleName ()));
         }
         return list;
-
-    }
-
-    @Override
-    public List<UserInfo> findAll() {
-        return userDao.findAll();
     }
 
     @Override
@@ -68,11 +61,35 @@ public class UserServiceImpl implements UserService {
         //对密码进行加密处理
         userInfo.setPassword (bCryptPasswordEncoder.encode (userInfo.getPassword ()));
         userDao.save(userInfo);
+    }
 
+
+    @Override
+    public List<UserInfo> findAll() {
+        return userDao.findAll();
     }
 
     @Override
     public UserInfo findById(String id) {
         return userDao.findById(id);
     }
+
+    @Override
+    public void deleteById(String id) {
+        userDao.deleteFromUsers_Role(id);
+        userDao.deleteById(id);
+    }
+
+    @Override
+    public List<Role> findOtherRoles(String userId) {
+        return userDao.findOtherRoles(userId);
+    }
+
+    @Override
+    public void addRoleToUser(String userId, String[] roleIds) {
+        for (String roleId : roleIds) {
+            userDao.addRoleToUser(userId,roleId);
+        }
+    }
+
 }

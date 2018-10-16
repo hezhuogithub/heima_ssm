@@ -25,4 +25,15 @@ public class PermissionServiceImpl implements PermissionService {
     public void save(Permission permission) {
         permissionDao.save(permission);
     }
+
+    @Override
+    public Permission findById(String permissionId) {
+        return permissionDao.findById(permissionId);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        permissionDao.deleteFromRole_Permission(id);
+        permissionDao.deleteById(id);
+    }
 }

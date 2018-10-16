@@ -151,7 +151,7 @@
 											<td>${permission.url }</td>
 											<td class="text-center">
 												<a href="${pageContext.request.contextPath}/permission/findById.do?id=${permission.id}" class="btn bg-olive btn-xs">详情</a>
-												<a href="${pageContext.request.contextPath}/user/findUserByIdAndAllRole.do?id=${user.id}" class="btn bg-olive btn-xs">添加角色</a>
+												<a href="${pageContext.request.contextPath}/permission/deletePermission.do?id=${permission.id}" class="btn bg-olive btn-xs">删除权限</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -165,7 +165,7 @@
                             <th>Engine version</th>
                             <th>CSS grade</th>
                             </tr>
-                            </tfoot>-->u
+                            </tfoot>-->
 							</table>
 							<!--数据列表/-->
 
