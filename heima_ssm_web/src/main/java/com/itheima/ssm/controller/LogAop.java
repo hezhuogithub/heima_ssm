@@ -44,11 +44,12 @@ public class LogAop {
      * @param jp
      */
     @Before("execution(* com.itheima.ssm.controller.*.*(..))")
-    public void doBefore(JoinPoint jp) throws NoSuchMethodException {
+    public void doBefore(JoinPoint jp){
         visitTime = new Date (); //当前时间就是开始访问的时间
 
         //获取具体执行的方法的Method对象
         clazz = jp.getTarget ().getClass (); //具体要访问的类
+        //被注释的内容也可得到method但是如果参数是接口类型会报错例如Model 所以我们会下面来获取
 //        String methodName = jp.getSignature ().getName (); //获取访问的方法的名称
 //        Object[] args = jp.getArgs ();//获取访问的方法的参数
 //        if (args == null || args.length == 0) {//说明无参数
@@ -96,7 +97,7 @@ public class LogAop {
                     String[] methodValue = methidAnnotation.value ();
                     url=classValue[0]+methodValue[0];
 
-                    //获取访问的ip
+                    //获取访问的ip 在web.xml配置request对象
                     String ip = request.getRemoteAddr ();
                     //获取当前操作的用户,这是Spring Security提供通过securityContext来获取的,也可以从request.getSession中获取
                     SecurityContext context = SecurityContextHolder.getContext ();//从上下文中获得当前登陆的用户

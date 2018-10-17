@@ -4,9 +4,9 @@ import com.itheima.ssm.domain.SysLog;
 
 import java.util.List;
 
-public interface SysLogService {
+    public interface SysLogService {
 
-    public void save(SysLog sysLog);
+        public void save(SysLog sysLog);
 
-    List<SysLog> findAll();
-}
+        List<SysLog> findAll();
+    }
